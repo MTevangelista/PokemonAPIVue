@@ -5,8 +5,23 @@
 }
 
 body {
-    font-family: 'Source Code Pro', monospace;
     background-color: rgba(195, 198, 192, 0.886);
+    background-size: auto 100vh;
+    font-family: 'Source Code Pro', monospace;
+    height: 100vh;
+}
+
+/* Se a tela tiver pelo menos 400px vai carregar estes estilos */
+@media (min-width: 400px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 600px) {
+    body {
+        font-size: 22px;
+    }
 }
 
 header {
@@ -45,11 +60,15 @@ header {
 .menu a:hover {
     background-color: rgb(195, 198, 192);
     color: black;
-    text-decoration: underline;
 }
 
 a {
+    /* color: teal; */
     text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .site-title,
@@ -62,8 +81,7 @@ a {
 }
 
 .site-subtitle {
-    font-family: 'Jost', sans-serif;
-    /* font-family: 'Gloria Hallelujah', cursive; */
+    font-family: 'Joast', sans-serif;
     line-height: 1.8em;
     font-style: italic;
     font-weight: lighter;
@@ -78,12 +96,8 @@ a {
 
 .contato h2,
 .consumindo-api h2 {
-    margin-bottom: .8em;
+    margin-bottom: 1.5em;
     font-size: 2em;
-}
-
-.contato .grid-icons {
-    text-align: center;
 }
 
 .contato a {
@@ -95,5 +109,5 @@ a {
 .contato a:active,
 .contato a:hover {
     text-decoration: none;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, .5);
 }
