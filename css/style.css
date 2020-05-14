@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    background-color: rgba(195, 198, 192, 0.886);
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.menu ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu a {
+    color: whitesmoke;
+    display: block;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: background-color 1s, color 1s;
+}
+
+.menu a:active,
+.menu a:hover {
+    background-color: rgb(195, 198, 192);
+    color: black;
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+}
+
+.site-title,
+.site-subtitle {
+    text-align: center;
+}
+
+.site-title {
+    font-size: 4em;
+}
+
+.site-subtitle {
+    font-family: 'Jost', sans-serif;
+    /* font-family: 'Gloria Hallelujah', cursive; */
+    line-height: 1.8em;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: medium;
+}
+
+.contato,
+.consumindo-api {
+    padding: 2em;
+    min-height: 50vh;
+}
+
+.contato h2,
+.consumindo-api h2 {
+    margin-bottom: .8em;
+    font-size: 2em;
+}
+
+.contato .grid-icons {
+    text-align: center;
+}
+
+.contato a {
+    color: black;
+    font-size: 4em;
+    transition: text-shadow 1s, color 1s;
+}
+
+.contato a:active,
+.contato a:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+}
