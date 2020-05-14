@@ -16,6 +16,9 @@ body {
     body {
         font-size: 18px;
     }
+    .contato .grid-icons {
+        text-align: center;
+    }
 }
 
 @media (min-width: 600px) {
@@ -71,6 +74,25 @@ a:hover {
     text-decoration: underline;
 }
 
+.titulo {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+    animation: linear 2s animacaoTitulo forwards;
+}
+
+/* Tipo de uma function de faz uma animação */
+@keyframes animacaoTitulo {
+    from {
+        transform: scale(0.2) translateY(50vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
 .site-title,
 .site-subtitle {
     text-align: center;
@@ -91,7 +113,7 @@ a:hover {
 .contato,
 .consumindo-api {
     padding: 2em;
-    min-height: 50vh;
+    height: 100vh;
 }
 
 .contato h2,
@@ -99,6 +121,7 @@ a:hover {
     margin-bottom: 1.5em;
     font-size: 2em;
 }
+
 
 .contato a {
     color: black;
