@@ -108,13 +108,13 @@ a:hover {
 }
 
 .contato,
-.consumindo-api {
+.pokedex {
     padding: 3em;
     height: 100vh;
 }
 
 .contato h2,
-.consumindo-api h2 {
+.pokedex h2 {
     margin-bottom: 1.5em;
     font-size: 2em;
 }
