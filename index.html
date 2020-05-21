@@ -32,7 +32,7 @@
     <section class="pokedex" id="pokedex">
         <h2>Pokedex</h2>
 
-        <!-- Trecho em html que passa a ser controlado pelo vue - A partir dessa parte, toda a aplicação vai ser manipulada pelo vue. Passe a ser um template a prtir da instância do vue-->
+        <!-- Trecho em html que passa a ser controlado pelo vue - A partir dessa parte, toda a aplicação vai ser manipulada pelo vue.-->
         <div id="app" class="searchPokemon">
             <form>
                 <input type="text" placeholder="Search pokemon..." v-model="input" />
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    <!-- Carrga o vueJs -->
+    <!-- Carrga o VueJs -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Carrega axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
@@ -140,7 +140,8 @@
                         const name = response.data.forms[0].name
                         // O tipo e a habilidade podem conter um valor ou vários e são retornadas como um array, o map cria um  novo array com espaços para trazer as informações
                         const type = response.data.types.map(item => ' ' + item.type.name).toString()
-                        const ability = response.data.abilities.map(item => ' ' + item.ability.name).toString()
+                        const ability = response.data.abilities.map(item => ' ' + item.ability.name)
+                            .toString()
                         // A divisão do peso e altura está sendo feita porque ambos vem multiplicados por 10
                         const height = (response.data.height / 10).toFixed(1)
                         const weight = (response.data.weight / 10).toFixed(1)

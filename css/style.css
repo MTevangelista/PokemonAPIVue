@@ -18,6 +18,7 @@ body {
     }
 }
 
+/* Se a tela tiver pelo menos 400px vai carregar estes estilos */
 @media (min-width: 600px) {
     body {
         font-size: 22px;
@@ -63,7 +64,6 @@ header {
 }
 
 a {
-    /* color: teal; */
     text-decoration: none;
 }
 
@@ -151,7 +151,6 @@ a:hover {
     width: calc(100% - 40px);
     font-size: 1em;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
-    /* overflow: hidden; */
 }
 
 .searchPokemon i {
@@ -166,8 +165,6 @@ a:hover {
 .searchPokemon i:hover {
     text-shadow: 0px 0px 20px rgba(10, 46, 80, 1);
 }
-
-/* ============================== */
 
 .detail {
     display: flex;
@@ -221,7 +218,6 @@ a:hover {
 
 .property {
     width: 90%;
-    /* max-width: 400px; */
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
 }
@@ -244,5 +240,4 @@ a:hover {
 
 .errorMessage {
     margin-top: 20px;
-    /* font-size: 50px; */
 }
