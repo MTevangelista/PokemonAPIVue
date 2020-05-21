@@ -19,7 +19,7 @@
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#pokedex">Pokedex</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#contato">Contact</a></li>
             </ul>
         </nav>
         <div class="titulo">
@@ -32,11 +32,10 @@
     <section class="pokedex" id="pokedex">
         <h2>Pokedex</h2>
 
-        <!-- Container em que o VueJs vai atuar nessa página --> 
         <!-- Trecho em html que passa a ser controlado pelo vue - A partir dessa parte, toda a aplicação vai ser manipulada pelo vue. Passe a ser um template a prtir da instância do vue-->
         <div id="app" class="searchPokemon">
             <form>
-                <input type="text" placeholder="Buscar pokemon..." v-model="input" />
+                <input type="text" placeholder="Search pokemon..." v-model="input" />
                 <i class="fas fa-search" type="submit" v-on:click="getPokemon"></i>
             </form>
 
