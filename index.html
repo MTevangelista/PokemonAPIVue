@@ -27,14 +27,53 @@
             <h1 class="site-title">Pokémon</h1>
             <h2 class="site-subtitle">PREPAREM-SE PARA ENCRENCA, ENCRENCA EM DOBRO!</h2>
         </div>
+
     </header>
 
     <section class="pokedex" id="pokedex">
         <h2>Pokedex</h2>
 
-        <p>
-            PARA UNIR AS PESSOAS DE NOSSA NAÇÃO! PARA DENUNCIAR OS MALES DA VERDADE E DO AMOR! PARA ESTENDER O NOSSO PODER AS ESTRELAS! JESSIE! JAMES! EQUIPE ROCKET DECOLANDO NA VELOCIDADE DA LUZ! RENDA-SE AGORA OU PREPAREM-SE PARA LUTAR!
-        </p>
+        <div id="app" class="searchPokemon">
+            <form>
+                <input type="text" placeholder="Buscar pokemon..." v-model="input" />
+                <i class="fas fa-search" type="submit" v-on:click="getPokemon"></i>
+            </form>
+
+            <div class="detail" v-show="show">
+                <div class="detail-view card">
+                    <div class="image">
+                        <img class="pokemon-image"></img>
+                    </div>
+                    <div class="data card-body">
+                        <h2 class="card-title">{{ pokemon.name }}</h2>
+
+                        <div class="property">
+                            <h4 class="property-title">Height/Altura</h4>
+                            <div>{{ pokemon.height}} m</div>
+                        </div>
+
+                        <div class="property">
+                            <div class="property-title">Weight/Peso</div>
+                            <div>{{ pokemon.weight}} kg</div>
+                        </div>
+
+                        <div class="property">
+                            <div class="property-title">Types</div>
+                            <div>{{ pokemon.type }}</div>
+                        </div>
+
+                        <div class="property">
+                            <div class="property-title">Abilities</div>
+                            <div>{{ pokemon.ability }}</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="close" @click="close">Close</button>
+                </div>
+            </div>
+            <div class="errorMessage">
+                <p v-show='errorMessage'>{{ mensagem  }}</p>
+            </div>
+        </div>
 
     </section>
 
@@ -49,10 +88,81 @@
                 <i class="fab fa-linkedin-in"></i>
             </a>
             <a target="_blank" href="https://www.instagram.com/_matheusrj/">
-                <i class="fab fa-instagram"></i>
+                <i class="fab fa-instagram" class="load"></i>
             </a>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Carrega axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
+    <!-- Carrega o arquivo Javascript -->
+    <!-- <script src="app.js"></script> -->
+    <script>
+        src = "axios.js"
+    </script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    pokemon: {
+                        name: '',
+                        type: '',
+                        ability: '',
+                        height: '',
+                        weight: ''
+                    },
+                    show: false,
+                    errorMessage: false,
+                    loading: false,
+                    input: '',
+                    mensagem: ''
+                }
+            },
+            methods: {
+                close() {
+                    this.show = false
+                },
+                async getPokemon() {
+                    this.loading = true
+                    try {
+                        let pokemonImage = document.querySelector(".pokemon-image");
+                        let inputData = this.input.toLowerCase()
+                        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${inputData}`)
+
+                        console.log(response.data);
+                        const image = response.data.sprites.front_default
+                        const name = response.data.forms[0].name
+                        const type = response.data.types.map(item => ' ' + item.type.name).toString()
+                        const ability = response.data.abilities.map(item => ' ' + item.ability.name).toString()
+                        const height = (response.data.height / 10).toFixed(1)
+                        const weight = (response.data.weight / 10).toFixed(1)
+                        console.log(type);
+
+                        pokemonImage.src = image
+                        this.pokemon.name = name
+                        this.pokemon.type = type
+                        this.pokemon.ability = ability
+                        this.pokemon.height = height
+                        this.pokemon.weight = weight
+                        this.input = ''
+                        this.show = true
+                        console.log(this.show);
+                        this.errorMessage = false
+                        this.loading = false
+                    } catch (error) {
+                        this.loading = true
+                        this.mensagem = 'Algo de errado aconteceu :('
+                        this.show = false
+                        this.errorMessage = true
+                        this.loading = false
+                    }
+                },
+            }
+        })
+    </script>
 </body>
 
 </html>
