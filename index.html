@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon API</title>
-
     <!-- Carrega os arquivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Carrega os arquivos de fonts -->
+    <!-- Carrega os arquivos fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <!-- Carrega os icons da pagina -->
     <script src="https://kit.fontawesome.com/15c7c4106e.js" crossorigin="anonymous"></script>
@@ -33,6 +32,8 @@
     <section class="pokedex" id="pokedex">
         <h2>Pokedex</h2>
 
+        <!-- Container em que o VueJs vai atuar nessa página --> 
+        <!-- Trecho em html que passa a ser controlado pelo vue - A partir dessa parte, toda a aplicação vai ser manipulada pelo vue. Passe a ser um template a prtir da instância do vue-->
         <div id="app" class="searchPokemon">
             <form>
                 <input type="text" placeholder="Buscar pokemon..." v-model="input" />
@@ -93,20 +94,19 @@
         </div>
     </section>
 
+    <!-- Carrga o vueJs -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Carrega axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
-    <!-- Carrega o arquivo Javascript -->
-    <!-- <script src="app.js"></script> -->
-    <script>
-        src = "axios.js"
-    </script>
 
+    <!-- Instância do vue -->
     <script>
         new Vue({
+            // Elemento que o VueJs vai manipular
             el: '#app',
             data() {
                 return {
+                    // Informações do pokemon que serão visualizadas na tela
                     pokemon: {
                         name: '',
                         type: '',
@@ -114,19 +114,23 @@
                         height: '',
                         weight: ''
                     },
+                    // essa variável controla a tela que carrega os dados do pokemon
                     show: false,
+                    // essa variável controla a mensagem de erro na tela, que aparece quando não encontra o dado pesquisado
                     errorMessage: false,
-                    loading: false,
+                    // Armazena o dado que foi inserido no campo de busca
                     input: '',
+                    // Armazeza a mensagem de erro
                     mensagem: ''
                 }
             },
             methods: {
+                // Responsável por fechar a tela que carrega os dados do pokemon 
                 close() {
                     this.show = false
                 },
+                // Responsável por consultar a api e trazer os dados do pokemon
                 async getPokemon() {
-                    this.loading = true
                     try {
                         let pokemonImage = document.querySelector(".pokemon-image");
                         let inputData = this.input.toLowerCase()
@@ -135,11 +139,12 @@
                         console.log(response.data);
                         const image = response.data.sprites.front_default
                         const name = response.data.forms[0].name
+                        // O tipo e a habilidade podem conter um valor ou vários e são retornadas como um array, o map cria um  novo array com espaços para trazer as informações
                         const type = response.data.types.map(item => ' ' + item.type.name).toString()
                         const ability = response.data.abilities.map(item => ' ' + item.ability.name).toString()
+                        // A divisão do peso e altura está sendo feita porque ambos vem multiplicados por 10
                         const height = (response.data.height / 10).toFixed(1)
                         const weight = (response.data.weight / 10).toFixed(1)
-                        console.log(type);
 
                         pokemonImage.src = image
                         this.pokemon.name = name
@@ -149,15 +154,11 @@
                         this.pokemon.weight = weight
                         this.input = ''
                         this.show = true
-                        console.log(this.show);
                         this.errorMessage = false
-                        this.loading = false
                     } catch (error) {
-                        this.loading = true
                         this.mensagem = 'Algo de errado aconteceu :('
                         this.show = false
                         this.errorMessage = true
-                        this.loading = false
                     }
                 },
             }
